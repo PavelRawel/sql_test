@@ -1,0 +1,46 @@
+with next_month as (
+ SELECT
+  FORMAT_DATE('%Y-%m', DATE_ADD(created_at, INTERVAL 1 MONTH)) AS next_month,
+  COUNT(client_id) AS active_clients_next
+FROM
+ `test-380207.de2024.clients`
+WHERE
+ FORMAT_DATE('%Y-%m', deleted_at) > FORMAT_DATE('%Y-%m', DATE_ADD(created_at, INTERVAL 1 MONTH)) OR deleted_at is null
+GROUP BY
+ next_month
+ORDER BY
+ next_month
+ ),
+
+
+this_month AS (
+ SELECT
+   FORMAT_DATE('%Y-%m', created_at) AS month,
+   COUNT(client_id) AS active_clients
+ FROM
+   `test-380207.de2024.clients`
+ WHERE
+   deleted_at IS NULL OR  FORMAT_DATE('%Y-%m', deleted_at) > FORMAT_DATE('%Y-%m', created_at)
+ GROUP BY
+   month
+ ORDER BY
+   month
+),
+-- Добавление данных о выручке
+revenue_with_running_sum AS (
+ SELECT
+   FORMAT_DATE('%Y-%m', Month) AS month,
+   Revenue,
+   SUM(Revenue) OVER (ORDER BY FORMAT_DATE('%Y-%m', Month)) AS running_sum_revenue
+ FROM
+   `test-380207.de2024.revenue`
+)
+
+
+SELECT t.month, Revenue, running_sum_revenue, ifnull(active_clients, 0) +ifnull(active_clients_next,0) as active_users, ifnull(active_clients, 0) as active_clients,  ifnull(active_clients_next,0) as active_clients_next
+from this_month t
+LEFT join next_month n on t.month = n.next_month
+LEFT join  revenue_with_running_sum r on t.month = r.month
+
+
+order by t.month
