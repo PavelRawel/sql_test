@@ -3,7 +3,8 @@
 ## Задача 1
 
 Я записал [скринкат](https://drive.google.com/file/d/11wwc7UXBrXXB6ZEAIQ37-gTJWRAuV4iG/view?usp=sharing)
-[задача 1](https://docs.google.com/spreadsheets/d/1_J28CQ7BcvEbQI9lM0HxrmDsTNBDWIoyNil3ueKOYEE/edit?gid=636872463#gid=636872463)
+
+Google sheets можно посмотреть по [ссылке](https://docs.google.com/spreadsheets/d/1_J28CQ7BcvEbQI9lM0HxrmDsTNBDWIoyNil3ueKOYEE/edit?gid=636872463#gid=636872463)
 
 ## Задача 2  - [ссылка на SQL](https://github.com/PavelRawel/sql_test/blob/main/sql/task_2)
 
