@@ -25,7 +25,7 @@ Google sheets можно посмотреть по [ссылке](https://docs.g
 Результат можно посмотреть в [дашборде](https://lookerstudio.google.com/reporting/c32e6516-75cd-4557-9c49-d0f0ea5b66e5/page/B6o9D/edit)
 
 
-![I did it]([https://picsum.photos/800/600](https://github.com/PavelRawel/sql_test/blob/main/1.jpg))
+![I did it]([[https://picsum.photos/800/600](https://github.com/PavelRawel/sql_test/blob/main/1.jpg)])
 
 
 
