@@ -1,10 +1,10 @@
-with wine as 
+with wine as -- соединяем данные
 (
 select  * from `test-380207.de2024.wine_t1`
 union all
 select  * from `test-380207.de2024.wine_t2`)
 
 SELECT distinct variety, 
-PERCENTILE_CONT(price, 0.5) OVER (PARTITION BY variety) AS median_price
+PERCENTILE_CONT(price, 0.5) OVER (PARTITION BY variety) AS median_price -- считаем медиану
 FROM  wine
 
