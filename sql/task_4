@@ -1,3 +1,7 @@
+-- Количество активных клиентов
+
+
+-- активные юзеры за след месяц
 with next_month as (
  SELECT
   FORMAT_DATE('%Y-%m', DATE_ADD(created_at, INTERVAL 1 MONTH)) AS next_month,
@@ -12,7 +16,7 @@ ORDER BY
  next_month
  ),
 
-
+-- активные юзеры за этот месяц
 this_month AS (
  SELECT
    FORMAT_DATE('%Y-%m', created_at) AS month,
@@ -26,6 +30,7 @@ this_month AS (
  ORDER BY
    month
 ),
+
 -- Добавление данных о выручке
 revenue_with_running_sum AS (
  SELECT
@@ -41,6 +46,4 @@ SELECT t.month, Revenue, running_sum_revenue, ifnull(active_clients, 0) +ifnull(
 from this_month t
 LEFT join next_month n on t.month = n.next_month
 LEFT join  revenue_with_running_sum r on t.month = r.month
-
-
 order by t.month
