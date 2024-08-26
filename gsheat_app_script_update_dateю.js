@@ -21,7 +21,7 @@ function updateTable() {
 
   // Заполняем первую строку листа датами, начиная с A1
   for (var i = 0; i < dates.length; i++) {
-    resultSheet.getRange(1, i + 1).setValue(dates[i]);  // Начинаем со столбца B (индекс 2)
+    resultSheet.getRange(1, i + 1).setValue(dates[i]);  // Начинаем со столбца B 
   }
 
   // Записываем метрики в столбец A
