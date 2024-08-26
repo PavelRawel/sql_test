@@ -1,4 +1,4 @@
-with wine as -- соединяем данные
+with wine as
 (
 select  * from `test-380207.de2024.wine_t1`
 union all
