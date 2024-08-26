@@ -1,3 +1,6 @@
+-- Информация по оттоку водителей компании Uber
+
+
   WITH yearly_departures AS (
     SELECT 
         EXTRACT(YEAR FROM end_date) AS year,
