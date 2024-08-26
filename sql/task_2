@@ -1,0 +1,17 @@
+  WITH yearly_departures AS (
+    SELECT 
+        EXTRACT(YEAR FROM end_date) AS year,
+        COUNT(*) AS driver_count
+    FROM `test-380207.de2024.drivers`
+    WHERE end_date IS NOT NULL
+    GROUP BY EXTRACT(YEAR FROM end_date)
+)
+SELECT *, LAG(driver_count) over (order by year) as last_year,
+driver_count - LAG(driver_count) over (order by year) as change,
+CASE
+when driver_count - LAG(driver_count) over (order by year) is null  then null
+when driver_count - LAG(driver_count) over (order by year) > 0   then 'increase'
+when driver_count - LAG(driver_count) over (order by year) < 0    then 'decrease'
+ else 'no change' end as change
+from yearly_departures
+order by year
