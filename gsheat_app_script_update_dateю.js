@@ -16,7 +16,7 @@ function updateTable() {
   // Сортируем даты в обратном порядке (от самой свежей к самой старой)
   dates = Array.from(new Set(dates)).sort(function(a, b) { return new Date(b) - new Date(a); });
 
-  // Оставляем только первые 7 дат
+  // Оставляем только первые 6 дат (нужно закомитить, если нужны все даты)
   dates = dates.slice(0, 7);
 
   // Заполняем первую строку листа датами, начиная с A1
@@ -43,6 +43,6 @@ function updateTable() {
     }
   }
 
-  // Удаляем содержимое ячейки A1
+  // Удаляем содержимое ячейки A1 (если это необходимо)
   resultSheet.getRange("A1").clearContent();
 }
