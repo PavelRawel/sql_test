@@ -1,3 +1,6 @@
+-- Найдите медианную цену каждой разновидности вина (variety)
+
+
 with wine as
 (
 select  * from `test-380207.de2024.wine_t1`
