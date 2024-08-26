@@ -9,9 +9,10 @@
 SELECT *, LAG(driver_count) over (order by year) as last_year,
 driver_count - LAG(driver_count) over (order by year) as change,
 CASE
-when driver_count - LAG(driver_count) over (order by year) is null  then null
-when driver_count - LAG(driver_count) over (order by year) > 0   then 'increase'
-when driver_count - LAG(driver_count) over (order by year) < 0    then 'decrease'
- else 'no change' end as change
+  when driver_count - LAG(driver_count) over (order by year) is null  then 'no data'
+  when driver_count - LAG(driver_count) over (order by year) > 0   then 'increase'
+  when driver_count - LAG(driver_count) over (order by year) < 0    then 'decrease'
+  else 'no change' 
+end as change
 from yearly_departures
 order by year
