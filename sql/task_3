@@ -1,8 +1,10 @@
-with wine as (
+with wine as 
+(
 select  * from `test-380207.de2024.wine_t1`
 union all
 select  * from `test-380207.de2024.wine_t2`)
-select distinct variety, 
+
+SELECT distinct variety, 
 PERCENTILE_DISC(price, 0.5) OVER (PARTITION BY variety) AS median_price
- from wine
+FROM  wine
 
