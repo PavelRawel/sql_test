@@ -4,7 +4,7 @@
         COUNT(*) AS driver_count
     FROM `test-380207.de2024.drivers`
     WHERE end_date IS NOT NULL
-    GROUP BY EXTRACT(YEAR FROM end_date)
+    GROUP BY ALL
 )
 SELECT *, LAG(driver_count) over (order by year) as last_year,
 driver_count - LAG(driver_count) over (order by year) as change,
